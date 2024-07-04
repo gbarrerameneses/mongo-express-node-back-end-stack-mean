@@ -18,3 +18,15 @@ exports.crearProducto = async (req, res) => {
         res.status(500).send('Hubo un error');
     }
 }
+
+exports.obtenerProductos = async (req, res) => { // petición a la BD
+    try {
+
+        const productos = await Producto.find();
+        res.json(productos) // devolvemos un json al cliente con los productos
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error');
+    }
+}
