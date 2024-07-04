@@ -10,6 +10,9 @@ const port = 4000
 // Conectamos a la BD
 conectarDB();
 
+// configurando middleware
+app.use(express.json()); // habilitando para mandar json a la aplicación
+
 app.use('/api/productos', require('./routes/producto'));
 
 // Definiendo ruta principal

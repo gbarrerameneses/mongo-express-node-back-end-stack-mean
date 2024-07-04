@@ -4,7 +4,7 @@ require('dotenv').config({ path: 'variables.env' }); // accedemos a la variable 
 const conectarDB = async () => {
     try {
         await mongoose.connect(process.env.DB_MONGO, { // conexión - Como primer parametro pasamos la ruta
-            useNewUrlParser: true,
+            // useNewUrlParser: true, # la opción useNewUrlParser que estás intentando usar al conectarte a MongoDB no es compatible con la versión de MongoDB que estás utilizando
             // useUnifiedTopology: true, # la opción useUnifiedTopology que estás intentando usar al conectarte a MongoDB no es compatible con la versión de MongoDB que estás utilizando
             // useFindAndModify: false  # la opción useFindAndModify que estás intentando usar al conectarte a MongoDB no es compatible con la versión de MongoDB que estás utilizando
         });
