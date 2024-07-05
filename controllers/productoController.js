@@ -1,5 +1,6 @@
 const Producto = require("../models/Producto");
 
+// POST
 exports.crearProducto = async (req, res) => {
     console.log('Desde controller crear producto');
     console.log(req.body);
@@ -19,6 +20,7 @@ exports.crearProducto = async (req, res) => {
     }
 }
 
+// GET
 exports.obtenerProductos = async (req, res) => { // petición a la BD
     try {
 
@@ -31,6 +33,7 @@ exports.obtenerProductos = async (req, res) => { // petición a la BD
     }
 }
 
+// PUT id
 exports.actualizarProducto = async (req, res) => {
     try {
 
@@ -53,6 +56,23 @@ exports.actualizarProducto = async (req, res) => {
         // 2.- el producto ya actualozado - el objeto producto
         // 3.- new: true
         producto = await Producto.findOneAndUpdate({ _id: req.params.id }, producto, {new: true})
+        res.json(producto)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error');
+    }
+}
+
+// GET id
+exports.obtenerProducto = async (req, res) => {
+    try {
+        let producto = await Producto.findById(req.params.id);  // petición a la BD para obtener un producto de la BD
+
+        if(!producto) {
+            res.status(404).json({msg: 'No existe el producto'})
+        }
+
         res.json(producto)
 
     } catch (error) {
