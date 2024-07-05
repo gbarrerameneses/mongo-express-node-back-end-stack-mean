@@ -80,3 +80,21 @@ exports.obtenerProducto = async (req, res) => {
         res.status(500).send('Hubo un error');
     }
 }
+
+// DELETE id
+exports.eliminarProducto = async (req, res) => {
+    try {
+        let producto = await Producto.findById(req.params.id);  // petición a la BD para obtener un producto de la BD
+
+        if(!producto) {
+            res.status(404).json({msg: 'No existe el producto'})
+        }
+
+        await Producto.findOneAndDelete({ _id: req.params.id }) // eliminamos el producto
+        res.json({ msg: 'Producto eliminado con éxito.'})
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error');
+    }
+}
